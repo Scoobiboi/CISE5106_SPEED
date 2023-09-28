@@ -9,4 +9,9 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('api/hello') // Add this endpoint
+  getHelloApi(): string {
+    return 'Hello from API!';
+  }
 }
