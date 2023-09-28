@@ -19,6 +19,9 @@ let AppController = class AppController {
     getHello() {
         return this.appService.getHello();
     }
+    getHelloApi() {
+        return 'Hello from API!';
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -27,8 +30,14 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('api'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], AppController.prototype, "getHelloApi", null);
 exports.AppController = AppController = __decorate([
-    (0, common_1.Controller)(),
+    (0, common_1.Controller)('api'),
     __metadata("design:paramtypes", [app_service_1.AppService])
 ], AppController);
 //# sourceMappingURL=app.controller.js.map
