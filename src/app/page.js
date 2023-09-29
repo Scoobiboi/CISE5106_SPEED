@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getConnectionInfo } from "../config/mongodb";
+import "./globals.css";
 
 export default function Home() {
   return (
