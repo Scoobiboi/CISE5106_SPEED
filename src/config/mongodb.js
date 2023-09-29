@@ -25,4 +25,3 @@ async function connectClient() {
 export function getConnectionInfo() {
   return connectClient();
 }
-  
