@@ -1,11 +1,5 @@
 {
     "version": 2,
-    "env": {
-      "DB_USER": "@DB_USER",
-      "DB_PASS": "@DB_PASS",
-      "DB_HOST":"@DB_HOST"
-    }
-    ,
     "builds": [
       {
         "src": "src/main.ts",
