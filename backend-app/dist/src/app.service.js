@@ -8,8 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
+const db_1 = require("../config/db");
 let AppService = class AppService {
     getHello() {
+        console.log((0, db_1.getConnectionInfo)());
         return 'Die World!';
     }
 };

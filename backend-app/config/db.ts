@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from 'mongodb';
 
 async function connectClient() {
   /**
@@ -13,15 +13,15 @@ async function connectClient() {
   try {
     // Connect to the MongoDB cluster
     await client.connect();
-    return "connected";
+    return 'connected';
   } catch (e) {
-    return "disconnected";
     console.error(e);
+    return 'disconnected';
   } finally {
     await client.close();
   }
 }
 
-export function getConnectionInfo() {
+export function getConnectionInfo(): Promise<string> {
   return connectClient();
 }
