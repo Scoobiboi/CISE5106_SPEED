@@ -12,12 +12,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
+const db_1 = require("../config/db");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
     getHello() {
         return this.appService.getHello();
+    }
+    async getArticles() {
+        const articles = await (0, db_1.getArticles)();
+        return articles;
+    }
+    async getArticlesByTitle() {
+        const articles = await (0, db_1.getArticles)('title');
+        return articles;
+    }
+    async getArticlesByYear() {
+        const articles = await (0, db_1.getArticles)('year');
+        return articles;
+    }
+    async getArticlesByStatus() {
+        const articles = await (0, db_1.getArticles)('status');
+        return articles;
+    }
+    async getArticlesByAuthor() {
+        const articles = await (0, db_1.getArticles)('authors');
+        return articles;
     }
 };
 exports.AppController = AppController;
@@ -27,6 +48,36 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('/articles'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getArticles", null);
+__decorate([
+    (0, common_1.Get)('/title/articles'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getArticlesByTitle", null);
+__decorate([
+    (0, common_1.Get)('/year/articles'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getArticlesByYear", null);
+__decorate([
+    (0, common_1.Get)('/status/articles'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getArticlesByStatus", null);
+__decorate([
+    (0, common_1.Get)('/authors/articles'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getArticlesByAuthor", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)('api'),
     __metadata("design:paramtypes", [app_service_1.AppService])

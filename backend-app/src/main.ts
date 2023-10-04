@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
-import { connectClient } from './config/db'; // Changed this line
+import { getConnectionInfo } from '../config/db'; // Changed this line
 
 async function bootstrap() {
   dotenv.config();
 
-  const dbStatus = await connectClient();
+  const dbStatus = await getConnectionInfo();
   console.log(`Database connection status: ${dbStatus}`);
 
   const app = await NestFactory.create(AppModule);
