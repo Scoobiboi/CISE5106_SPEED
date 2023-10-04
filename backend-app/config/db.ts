@@ -27,7 +27,7 @@ export async function getArticles(sortBy = '_id') {
     const sortParams = {};
     sortParams[sortBy] = 1; // Sort in ascending order
     const articles = await client
-      .db('database')
+      .db('CISE_SPEED_DATABASE')
       .collection('Articles')
       .find()
       .sort(sortParams)

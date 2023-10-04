@@ -29,7 +29,7 @@ async function getArticles(sortBy = '_id') {
         const sortParams = {};
         sortParams[sortBy] = 1;
         const articles = await client
-            .db('database')
+            .db('CISE_SPEED_DATABASE')
             .collection('Articles')
             .find()
             .sort(sortParams)
