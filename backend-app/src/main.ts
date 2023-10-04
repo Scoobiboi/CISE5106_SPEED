@@ -9,6 +9,7 @@ async function bootstrap() {
 
   const dbStatus = await getConnectionInfo();
   console.log(`Database connection status: ${dbStatus}`);
+  console.log(`Database connection NAME: ${process.env.DB_USER}`);
 
   const app = await NestFactory.create(AppModule);
   await app.listen(process.env.PORT || 8080);
