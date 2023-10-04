@@ -15,7 +15,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "src/main.ts",
+        "dest": "src/app.controller.ts",
         "methods": [
           "GET",
           "POST",
