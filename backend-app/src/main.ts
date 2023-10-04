@@ -6,7 +6,7 @@ import { getConnectionInfo } from '../config/db'; // Changed this line
 
 async function bootstrap() {
   dotenv.config();
-
+  console.log("API Key:", process.env.DB_USER);
   const dbStatus = await getConnectionInfo();
   console.log(`Database connection status: ${dbStatus}`);
 
