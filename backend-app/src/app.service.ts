@@ -3,8 +3,8 @@ import { getConnectionInfo } from '../config/db';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    console.log(getConnectionInfo());
+  async getHello(): Promise<string> {
+    console.log(await getConnectionInfo());
     return 'Die World!';
   }
 }

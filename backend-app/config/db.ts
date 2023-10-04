@@ -11,12 +11,17 @@ async function connectClient() {
   const client = new MongoClient(uri);
 
   try {
+    console.log('MongoDB URI:', uri);
+    console.log('DB_USER:', process.env.DB_USER);
+    console.log('DB_PASS:', process.env.DB_PASS);
+    console.log('DB_HOST:', process.env.DB_HOST);
+
     // Connect to the MongoDB cluster
     await client.connect();
-    return 'connected';
+    return Promise.resolve('connected');
   } catch (e) {
     console.error(e);
-    return 'disconnected';
+    return Promise.resolve('disconnected');
   } finally {
     await client.close();
   }

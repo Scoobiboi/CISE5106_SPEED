@@ -10,8 +10,8 @@ exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 const db_1 = require("../config/db");
 let AppService = class AppService {
-    getHello() {
-        console.log((0, db_1.getConnectionInfo)());
+    async getHello() {
+        console.log(await (0, db_1.getConnectionInfo)());
         return 'Die World!';
     }
 };
