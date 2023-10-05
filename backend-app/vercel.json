@@ -3,7 +3,8 @@
     "env": {
       "DB_USER": "@DB_USER",
       "DB_PASS": "@DB_PASS",
-      "DB_HOST":"@DB_HOST"
+      "DB_HOST":"@DB_HOST",
+      "MONGO_URI": "@MONGO_URI"
     }
     ,
     "builds": [
@@ -15,7 +16,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "src/app.controller.ts",
+        "dest": "src/main.ts",
         "methods": [
           "GET",
           "POST",
