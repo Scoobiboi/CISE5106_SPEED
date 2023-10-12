@@ -8,7 +8,11 @@ async function bootstrap() {
     dotenv.config();
     const dbStatus = await (0, db_1.getConnectionInfo)();
     console.log(`Database connection status: ${dbStatus}`);
+    console.log(`Database connection NAME: ${process.env.DB_USER}`);
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors({
+        origin: 'http://localhost:3000',
+    });
     await app.listen(process.env.PORT || 8080);
 }
 bootstrap();
