@@ -3,7 +3,8 @@ import { MongoClient } from 'mongodb';
 let client;
 
 export async function connectClient() {
-  const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/?retryWrites=true&w=majority&appName=AtlasApp`;
+  //remove as string if this doesn't work. 
+  const uri = `mongodb+srv://${process.env.DB_USER as string}:${process.env.DB_PASS as string}@${process.env.DB_HOST as string}/?retryWrites=true&w=majority&appName=AtlasApp`;
   client = new MongoClient(uri);
   console.log('MongoDB URI:', uri);
   console.log('DB_USER:', process.env.DB_USER);
