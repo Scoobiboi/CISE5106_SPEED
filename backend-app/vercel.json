@@ -1,27 +1,26 @@
 {
-    "version": 2,
-    "env": {
-      "DB_HOST": "cluster0.jxc0jkc.mongodb.net",
-      "DB_USER": "cise-admin",
-      "DB_PASSWORD": "mPtu7zJISmJANUUO"
-    },
-    "builds": [
-      {
-        "src": "src/main.ts",
-        "use": "@vercel/node"
+  "version": 2,
+  "env": {
+    "DB_HOST": "cluster0.jxc0jkc.mongodb.net",
+    "DB_USER": "cise-admin",
+    "DB_PASSWORD": "mPtu7zJISmJANUUO"
+  },
+
+  "builds": [
+    {
+      "src": "src/main.ts", 
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "25mb",
+        "cmd": "npm run build"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "src/main.ts",
-        "methods": [
-          "GET",
-          "POST",
-          "PUT",
-          "DELETE"
-        ]
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/main.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
+    }
+  ]
+}

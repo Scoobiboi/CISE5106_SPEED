@@ -15,7 +15,7 @@ async function bootstrap() {
 
   // Configure CORS to allow 'localhost:3000'
   app.enableCors({
-  origin: ['http://localhost:3000', 'https://cise-5106-speed.vercel.app'],
+  origin: ['http://localhost:3000', 'https://vercel-nest-scoobiboi.vercel.app'],
 });
 
 
