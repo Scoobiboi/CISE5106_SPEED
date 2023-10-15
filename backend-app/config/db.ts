@@ -1,10 +1,9 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 let client;
 
 export async function connectClient() {
-  //remove as string if this doesn't work. 
-  const uri = `mongodb+srv://${process.env.DB_USER as string}:${process.env.DB_PASS as string}@${process.env.DB_HOST as string}/?retryWrites=true&w=majority&appName=AtlasApp`;
+  const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/?retryWrites=true&w=majority&appName=AtlasApp`;
   client = new MongoClient(uri);
   console.log('MongoDB URI:', uri);
   console.log('DB_USER:', process.env.DB_USER);
@@ -39,3 +38,57 @@ export async function getArticles(sortBy = '_id') {
     return [];
   }
 }
+
+//Update status
+export async function updateArticleStatus(id, status) {
+  try {
+    const result = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .updateOne({ _id: new ObjectId(id) }, { $set: { Moderation_status: status } }); // Convert id to ObjectId
+    return result;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+// Insert New Article
+export async function addArticle(article) {
+  try {
+    const result = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .insertOne(article);
+    return result;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+  
+
+  //New Rating
+  export async function rateArticle(id, newRating) {
+    try {
+      const article = await client
+        .db('CISE_SPEED_DATABASE')
+        .collection('Articles')
+        .findOne({ _id: new ObjectId(id) });
+      
+      const updatedRating = Math.round((article.Rating * article.no_Ratings + newRating) / (article.no_Ratings + 1));
+      const updatedNoRatings = article.no_Ratings + 1;
+  
+      const result = await client
+        .db('CISE_SPEED_DATABASE')
+        .collection('Articles')
+        .updateOne(
+          { _id: new ObjectId(id) },
+          { $set: { Rating: updatedRating, no_Ratings: updatedNoRatings } }
+        );
+      return result;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }
