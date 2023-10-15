@@ -1,12 +1,10 @@
 {
     "version": 2,
     "env": {
-      "DB_USER": "@DB_USER",
-      "DB_PASS": "@DB_PASS",
-      "DB_HOST":"@DB_HOST",
-      "PORT":"@PORT"
-    }
-    ,
+      "DB_HOST": "cluster0.jxc0jkc.mongodb.net",
+      "DB_USER": "cise-admin",
+      "DB_PASSWORD": "mPtu7zJISmJANUUO"
+    },
     "builds": [
       {
         "src": "src/main.ts",
