@@ -5,6 +5,6 @@ import { getConnectionInfo } from '../config/db';
 export class AppService {
   async getHello(): Promise<string> {
     console.log(await getConnectionInfo());
-    return 'Die World!';
+    return 'Hi World!';
   }
 }

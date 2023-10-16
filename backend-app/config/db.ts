@@ -5,11 +5,11 @@ import { MongoClient, ObjectId } from 'mongodb';
 let client;
 
 export async function connectClient() {
-  const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/?retryWrites=true&w=majority&appName=AtlasApp`;
+  const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority&appName=AtlasApp`;
   client = new MongoClient(uri);
   console.log('MongoDB URI:', uri);
   console.log('DB_USER:', process.env.DB_USER);
-  console.log('DB_PASS:', process.env.DB_PASS);
+  console.log('DB_PASS:', process.env.DB_PASSWORD);
   console.log('DB_HOST:', process.env.DB_HOST);
   
   try {
