@@ -78,7 +78,7 @@ export function ArticlesComponent() {
 
 async function getArticles() {
   try {
-    const response = await fetch("http://localhost:8080/api/articles");
+    const response = await fetch("https://vercel-nest-scoobiboi.vercel.app/articles");
 
     if (response.status === 200) {
       const data = await response.json();
