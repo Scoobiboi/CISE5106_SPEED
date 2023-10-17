@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       # UNCOMMENT WHEN TESTS ADDED
-      -  name: Run the tests
+      - name: Run the tests
         run: npm test
 
       - name: Build
