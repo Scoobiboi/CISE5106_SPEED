@@ -1,8 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from './app.module';
+import { AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-
 describe('CORS Configuration (e2e)', () => {
   let app: INestApplication;
 
