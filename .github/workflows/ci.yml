@@ -2,9 +2,9 @@ name: CI_action
 
 on:
   push:
-    branches: [main]
+    branches: [main,test_case_branch]
   pull_request:
-    branches: [main]
+    branches: [main,test_case_branch]
 
 jobs:
   build:
