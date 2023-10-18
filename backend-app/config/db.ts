@@ -109,28 +109,28 @@ export async function searchArticlesByTitle(title) {
   }
 
   // Update Article Evidence
-export async function updateArticleEvidence(id, newEvidence) {
-  try {
-    const article = await client
-      .db('CISE_SPEED_DATABASE')
-      .collection('Articles')
-      .findOne({ _id: new ObjectId(id) });
+  export async function updateArticleEvidence(id, newEvidence) {
+    try {
+      const article = await client
+        .db('CISE_SPEED_DATABASE')
+        .collection('Articles')
+        .findOne({ _id: new ObjectId(id) });
 
-    const updatedEvidence = article.Evidence + ' ' + newEvidence;
+      const updatedEvidence = article.Evidence + ' | ' + newEvidence;
 
-    const result = await client
-      .db('CISE_SPEED_DATABASE')
-      .collection('Articles')
-      .updateOne(
-        { _id: new ObjectId(id) },
-        { $set: { Evidence: updatedEvidence } }
-      );
-    return result;
-  } catch (e) {
-    console.error(e);
-    return null;
+      const result = await client
+        .db('CISE_SPEED_DATABASE')
+        .collection('Articles')
+        .updateOne(
+          { _id: new ObjectId(id) },
+          { $set: { Evidence: updatedEvidence } }
+        );
+      return result;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
   }
-}
 
 // Insert New User
 export async function addUser(user) {
