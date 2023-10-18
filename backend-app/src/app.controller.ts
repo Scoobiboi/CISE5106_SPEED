@@ -1,6 +1,6 @@
 import { Controller, Get, Put, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { getArticles, updateArticleStatus, addArticle, rateArticle } from '../config/db';
+import { getArticles, updateArticleStatus, addArticle, rateArticle, addUser, findUser, updateArticleEvidence, searchArticlesByTitle } from '../config/db';
 
 @Controller('api')
 export class AppController {
@@ -69,9 +69,17 @@ export class AppController {
       Publication_year: body.Publication_year,
       Moderation_status: false,
       Rating: 0,
-      no_Ratings: 0
+      no_Ratings: 0,
+      Evidence: ""
     };
     const result = await addArticle(article);
+    return result;
+  }
+
+  // {  "evidence": "Evidence test put" }
+  @Put('/articles/:id/evidence') // New PUT route for submitting evidence
+  async submitEvidence(@Param('id') id: string, @Body('evidence') evidence: string) {
+    const result = await updateArticleEvidence(id, evidence);
     return result;
   }
 
@@ -80,5 +88,48 @@ export class AppController {
   async rateArticle(@Param('id') id: string, @Body('rating') rating: number) {
     const result = await rateArticle(id, rating);
     return result;
+  }
+
+  @Get('/articles/search/:title') // New GET route for searching articles by title
+  async searchArticles(@Param('title') title: string) {
+    const articles = await searchArticlesByTitle(title);
+    return articles;
+  }
+
+  //{
+  //  "Name": "John Doe",
+  //  "Password": "password123",
+  //  "Email": "johndoe@example.com"
+  //  }
+  @Post('/users') // New POST route for creating a user
+  async addUser(@Body() body) {
+    const user = {
+      Name: body.Name,
+      Password: body.Password,
+      Email: body.Email,
+      Role: "user",
+    };
+    const result = await addUser(user);
+    return result;
+  }
+
+
+  @Post('/login') // New POST route for logging in a user
+  async loginUser(@Body() body) {
+    const { Email, Password } = body;
+    const user = await findUser(Email, Password);
+    
+    if (user) {
+      // User found, return success response with user's ID and status
+      return { 
+        status: 'success', 
+        message: 'Login successful', 
+        userId: user._id, 
+        userStatus: user.Role 
+      };
+    } else {
+      // User not found, return error response
+      return { status: 'error', message: 'Invalid email or password' };
+    }
   }
 }
