@@ -1,5 +1,4 @@
 //The previous code is commented out below... 
-
 import { MongoClient, ObjectId } from 'mongodb';
 
 let client;
@@ -77,7 +76,6 @@ export async function rateArticle(id, newRating) {
     
     const updatedRating = Math.round((article.Rating * article.no_Ratings + newRating) / (article.no_Ratings + 1));
     const updatedNoRatings = article.no_Ratings + 1;
-
     const result = await client
       .db('CISE_SPEED_DATABASE')
       .collection('Articles')
@@ -91,6 +89,7 @@ export async function rateArticle(id, newRating) {
     return null;
   }
 }
+
 
 
 
