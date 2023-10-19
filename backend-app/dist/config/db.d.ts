@@ -1,3 +1,10 @@
 export declare function connectClient(): Promise<string>;
 export declare function getConnectionInfo(): Promise<string>;
 export declare function getArticles(sortBy?: string): Promise<any>;
+export declare function updateArticleStatus(id: any, status: any): Promise<any>;
+export declare function addArticle(article: any): Promise<any>;
+export declare function searchArticlesByTitle(title: any): Promise<any>;
+export declare function rateArticle(id: any, newRating: any): Promise<any>;
+export declare function updateArticleEvidence(id: any, newEvidence: any): Promise<any>;
+export declare function addUser(user: any): Promise<any>;
+export declare function findUser(email: any, password: any): Promise<any>;
