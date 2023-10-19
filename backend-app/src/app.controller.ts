@@ -13,13 +13,8 @@ export class AppController {
 
   @Get('/articles')
   async getArticles() {
-    try {
-      const articles = await getArticles();
-      return articles;
-    } catch (error) {
-      // Handle the error and send an appropriate response
-      throw new Error('Failed to get articles');
-    }
+    const articles = await getArticles();
+    return articles;
   }
 
   @Get('/title/articles')
@@ -81,6 +76,7 @@ export class AppController {
     return result;
   }
 
+  // {  "evidence": "Evidence test put" }
   @Put('/articles/:id/evidence') // New PUT route for submitting evidence
   async submitEvidence(@Param('id') id: string, @Body('evidence') evidence: string) {
     const result = await updateArticleEvidence(id, evidence);
@@ -116,6 +112,7 @@ export class AppController {
     const result = await addUser(user);
     return result;
   }
+
 
   @Post('/login') // New POST route for logging in a user
   async loginUser(@Body() body) {
