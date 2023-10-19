@@ -7,4 +7,6 @@ export class AppService {
     console.log(await getConnectionInfo());
     return 'Hi World!';
   }
+  
 }
+
