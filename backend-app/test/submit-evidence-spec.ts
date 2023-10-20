@@ -61,6 +61,27 @@ it('should add an article to the database', async () => {
     const addArticleMock = jest.fn(() => Promise.resolve(mockObject));
     const result = await addArticleMock();
     expect(result).toEqual(mockObject); 
-  }); 
-
+  });
+//Mocking a database collection and checking the seaarch query implemented
+  it('should search an Article in the database', async () => {
+    const mockObject = {
+    article: "Article_2",
+    }
+    const mockDatabaseCollection = [{
+    article: "Article_1",
+    Authors: "Bob",
+    Journal_Name:"Journal",
+    Publication_year: "2022",
+    },
+    {
+      article: "Article_2",
+      Authors: "Bob",
+      Journal_Name:"Journal",
+      Publication_year: "2022",
+      }
+  ]
+    const searchrAticleMock = jest.fn(() => Promise.resolve(mockDatabaseCollection));
+    const result = await searchrAticleMock();
+    expect(result[1].article).toEqual(mockObject.article); 
+  });
 });
