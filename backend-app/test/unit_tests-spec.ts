@@ -51,7 +51,7 @@ describe('Database Mocks', () => {
     expect(result).toEqual(mockObject)
   });
 
-//Mocks adding data to a database.
+// Mocks adding data to a database.
 
 it('should add an article to the database', async () => {
     const mockObject = {
@@ -80,8 +80,20 @@ it('should add an article to the database', async () => {
       Publication_year: "2022",
       }
   ]
-    const searchrAticleMock = jest.fn(() => Promise.resolve(mockDatabaseCollection));
-    const result = await searchrAticleMock();
-    expect(result[1].article).toEqual(mockObject.article); 
+    const createMockDB = jest.fn(() => Promise.resolve(mockDatabaseCollection));
+    const result = await createMockDB();
+    let found = false;
+    for (const item of result) {
+      if (item.article === mockObject.article) {
+        found = true;
+        expect(item).toEqual({
+          article: "Article_2",
+          Authors: "Bob",
+          Journal_Name: "Journal",
+          Publication_year: "2022",
+        });
+      }
+    }
+    expect(found).toBe(true); // Ensure the article was found  
   });
 });
