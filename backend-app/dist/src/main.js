@@ -11,7 +11,7 @@ async function bootstrap() {
     console.log(`Database connection NAME: ${process.env.DB_USER}`);
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
-        origin: 'http://localhost:3000',
+        origin: ['localhost:3000', 'https://cise-5106-speed.vercel.app'],
     });
     await app.listen(process.env.PORT || 8080);
 }

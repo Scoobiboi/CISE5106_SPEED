@@ -47,10 +47,16 @@ export class AppController {
     return articles;
   }
 
-  // Body in put request must look like this: { "status": false }
-  @Put('/articles/:id/status') // New PUT route
-  async updateArticleStatus(@Param('id') id: string, @Body('status') status: boolean) {
-    const result = await updateArticleStatus(id, status);
+  @Get('/status/articles/:status') // Updated GET route
+  async getArticlesStatus(@Param('status') status: string) {
+    const articles = await getArticles(status);
+    return articles;
+  }
+
+  // Body in put request must look like this: { "status": "approved", "reason": "Your moderation reason" }
+  @Put('/articles/:id/status') // Updated PUT route
+  async updateArticleStatus(@Param('id') id: string, @Body('status') status: string, @Body('reason') reason: string) {
+    const result = await updateArticleStatus(id, status, reason);
     return result;
   }
 
@@ -67,10 +73,11 @@ export class AppController {
       Authors: body.Authors,
       Journal_Name: body.Journal_Name,
       Publication_year: body.Publication_year,
-      Moderation_status: false,
+      Moderation_status: "Awaiting",
       Rating: 0,
       no_Ratings: 0,
-      Evidence: ""
+      Evidence: "",
+      Moderation_reason: ""
     };
     const result = await addArticle(article);
     return result;

@@ -47,8 +47,8 @@ let AppController = class AppController {
         const articles = await (0, db_1.getArticles)('Rating');
         return articles;
     }
-    async updateArticleStatus(id, status) {
-        const result = await (0, db_1.updateArticleStatus)(id, status);
+    async updateArticleStatus(id, status, reason) {
+        const result = await (0, db_1.updateArticleStatus)(id, status, reason);
         return result;
     }
     async addArticle(body) {
@@ -60,7 +60,8 @@ let AppController = class AppController {
             Moderation_status: false,
             Rating: 0,
             no_Ratings: 0,
-            Evidence: ""
+            Evidence: "",
+            Moderation_reason: ""
         };
         const result = await (0, db_1.addArticle)(article);
         return result;
@@ -150,8 +151,9 @@ __decorate([
     (0, common_1.Put)('/articles/:id/status'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)('status')),
+    __param(2, (0, common_1.Body)('reason')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Boolean]),
+    __metadata("design:paramtypes", [String, Boolean, String]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "updateArticleStatus", null);
 __decorate([

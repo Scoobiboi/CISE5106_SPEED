@@ -39,13 +39,29 @@ export async function getArticles(sortBy = '_id') {
   }
 }
 
+export async function getArticlesStatus(status) {
+  try {
+    const articles = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .find({ Moderation_status: status })
+      .toArray();
+    return articles;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
+
+
+
 //Update status
-export async function updateArticleStatus(id, status) {
+export async function updateArticleStatus(id, status, reason) {
   try {
     const result = await client
       .db('CISE_SPEED_DATABASE')
       .collection('Articles')
-      .updateOne({ _id: new ObjectId(id) }, { $set: { Moderation_status: status } }); // Convert id to ObjectId
+      .updateOne({ _id: new ObjectId(id) }, { $set: { Moderation_status: status, Moderation_reason: reason } }); // Convert id to ObjectId
     return result;
   } catch (e) {
     console.error(e);
