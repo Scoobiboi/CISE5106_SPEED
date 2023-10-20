@@ -20,7 +20,7 @@ describe('Database Mocks', () => {
       };
     
       const checkEnvVariablesMock = jest.fn(()=> Promise.resolve(list_of_env_variables))
-      const result = await checkEnvVariablesMock()
+      const result = await checkEnvVariablesMock()  
       expect(result.DB_USER).toBeDefined
       expect(result.DB_PASS).toBeDefined
       expect(result.DB_HOST).toBeDefined
@@ -39,7 +39,7 @@ describe('Database Mocks', () => {
     expect(result).toEqual(mockObject); 
   });
 
-//Mocks the process of updating articles
+//Mocks the process of updating articles STATUS
   it('should update article status in the database', async () => {
     const mockObject = {
       articleId: "1",
