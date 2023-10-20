@@ -12,7 +12,7 @@ const db_1 = require("../config/db");
 let AppService = class AppService {
     async getHello() {
         console.log(await (0, db_1.getConnectionInfo)());
-        return 'Die World!';
+        return 'Hi World!';
     }
 };
 exports.AppService = AppService;

@@ -42,12 +42,12 @@ async function getArticles(sortBy = '_id') {
     }
 }
 exports.getArticles = getArticles;
-async function updateArticleStatus(id, status) {
+async function updateArticleStatus(id, status, reason) {
     try {
         const result = await client
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')
-            .updateOne({ _id: new mongodb_1.ObjectId(id) }, { $set: { Moderation_status: status } });
+            .updateOne({ _id: new mongodb_1.ObjectId(id) }, { $set: { Moderation_status: status, Moderation_reason: reason } });
         return result;
     }
     catch (e) {
@@ -111,7 +111,7 @@ async function updateArticleEvidence(id, newEvidence) {
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')
             .findOne({ _id: new mongodb_1.ObjectId(id) });
-        const updatedEvidence = article.Evidence + ' ' + newEvidence;
+        const updatedEvidence = article.Evidence + ' | ' + newEvidence;
         const result = await client
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')
