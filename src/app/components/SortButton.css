@@ -1,0 +1,18 @@
+.button {
+  background-color: rgb(2, 61, 2);
+  margin-left: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.arrows {
+  display: flex;
+  flex-direction: column;
+}
