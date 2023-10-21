@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findUser = exports.addUser = exports.updateArticleEvidence = exports.rateArticle = exports.searchArticlesByTitle = exports.addArticle = exports.updateArticleStatus = exports.getArticles = exports.getConnectionInfo = exports.connectClient = void 0;
+exports.findUser = exports.addUser = exports.updateArticleEvidence = exports.rateArticle = exports.searchArticlesByTitle = exports.addArticle = exports.updateArticleStatus = exports.getArticlesStatus = exports.getArticles = exports.getConnectionInfo = exports.connectClient = void 0;
 const mongodb_1 = require("mongodb");
 let client;
 async function connectClient() {
@@ -42,6 +42,21 @@ async function getArticles(sortBy = '_id') {
     }
 }
 exports.getArticles = getArticles;
+async function getArticlesStatus(status) {
+    try {
+        const articles = await client
+            .db('CISE_SPEED_DATABASE')
+            .collection('Articles')
+            .find({ Moderation_status: status })
+            .toArray();
+        return articles;
+    }
+    catch (e) {
+        console.error(e);
+        return [];
+    }
+}
+exports.getArticlesStatus = getArticlesStatus;
 async function updateArticleStatus(id, status, reason) {
     try {
         const result = await client
@@ -87,12 +102,15 @@ async function searchArticlesByTitle(title) {
 exports.searchArticlesByTitle = searchArticlesByTitle;
 async function rateArticle(id, newRating) {
     try {
+        console.log(id, newRating);
         const article = await client
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')
             .findOne({ _id: new mongodb_1.ObjectId(id) });
-        const updatedRating = Math.round((article.Rating * article.no_Ratings + newRating) / (article.no_Ratings + 1));
+        const updatedRating = Math.round((article.Rating * article.no_Ratings + newRating) /
+            (article.no_Ratings + 1));
         const updatedNoRatings = article.no_Ratings + 1;
+        console.log(updatedRating);
         const result = await client
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')

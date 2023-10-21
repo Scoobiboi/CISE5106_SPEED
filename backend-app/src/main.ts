@@ -15,10 +15,10 @@ async function bootstrap() {
 
   // Configure CORS to allow 'localhost:3000'
   app.enableCors({
-  origin: ['localhost:3000','https://cise-5106-speed.vercel.app'],
-});
+    origin: ['https://cise-5106-speed.vercel.app', 'http://localhost:3000'],
+  });
 
-  // add a process env port 
+  // add a process env port
   await app.listen(process.env.PORT || 8080);
 }
 

@@ -1,6 +1,15 @@
 import { Controller, Get, Put, Post, Body, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { getArticles, updateArticleStatus, addArticle, rateArticle, addUser, findUser, updateArticleEvidence, searchArticlesByTitle } from '../config/db';
+import {
+  getArticles,
+  updateArticleStatus,
+  addArticle,
+  rateArticle,
+  addUser,
+  findUser,
+  updateArticleEvidence,
+  searchArticlesByTitle,
+} from '../config/db';
 
 @Controller('api')
 export class AppController {
@@ -55,7 +64,11 @@ export class AppController {
 
   // Body in put request must look like this: { "status": "approved", "reason": "Your moderation reason" }
   @Put('/articles/:id/status') // Updated PUT route
-  async updateArticleStatus(@Param('id') id: string, @Body('status') status: string, @Body('reason') reason: string) {
+  async updateArticleStatus(
+    @Param('id') id: string,
+    @Body('status') status: string,
+    @Body('reason') reason: string,
+  ) {
     const result = await updateArticleStatus(id, status, reason);
     return result;
   }
@@ -64,7 +77,7 @@ export class AppController {
   //  "title": "Arin POST test 2",
   //  "Authors": "Arin Bindra",
   //  "Journal_Name": "Arin Posted Articles",
-  //  "Publication_year": 2022 
+  //  "Publication_year": 2022
   //  }
   @Post('/articles') // New POST route
   async addArticle(@Body() body) {
@@ -73,11 +86,11 @@ export class AppController {
       Authors: body.Authors,
       Journal_Name: body.Journal_Name,
       Publication_year: body.Publication_year,
-      Moderation_status: "Awaiting",
+      Moderation_status: 'Awaiting',
       Rating: 0,
       no_Ratings: 0,
-      Evidence: "",
-      Moderation_reason: ""
+      Evidence: '',
+      Moderation_reason: '',
     };
     const result = await addArticle(article);
     return result;
@@ -85,14 +98,19 @@ export class AppController {
 
   // {  "evidence": "Evidence test put" }
   @Put('/articles/:id/evidence') // New PUT route for submitting evidence
-  async submitEvidence(@Param('id') id: string, @Body('evidence') evidence: string) {
+  async submitEvidence(
+    @Param('id') id: string,
+    @Body('evidence') evidence: string,
+  ) {
     const result = await updateArticleEvidence(id, evidence);
     return result;
   }
 
   //{ "rating": 5 }
-  @Put('/articles/:id/rate') // New PUT route for rating
+  @Put('/articles/:id/rate')
   async rateArticle(@Param('id') id: string, @Body('rating') rating: number) {
+    console.log('id', id);
+    console.log('rating', rating);
     const result = await rateArticle(id, rating);
     return result;
   }
@@ -114,25 +132,25 @@ export class AppController {
       Name: body.Name,
       Password: body.Password,
       Email: body.Email,
-      Role: "user",
+      Role: 'user',
     };
     const result = await addUser(user);
     return result;
   }
 
-
   @Post('/login') // New POST route for logging in a user
   async loginUser(@Body() body) {
-    const { Email, Password } = body;
-    const user = await findUser(Email, Password);
-    
+    const { email, password } = body;
+    console.log(email, password);
+    const user = await findUser(email, password);
+
     if (user) {
       // User found, return success response with user's ID and status
-      return { 
-        status: 'success', 
-        message: 'Login successful', 
-        userId: user._id, 
-        userStatus: user.Role 
+      return {
+        status: 'success',
+        message: 'Login successful',
+        userId: user._id,
+        userStatus: user.Role,
       };
     } else {
       // User not found, return error response

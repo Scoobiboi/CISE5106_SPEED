@@ -9,7 +9,8 @@ export declare class AppController {
     getArticlesByStatus(): Promise<any>;
     getArticlesByAuthor(): Promise<any>;
     getArticlesByRating(): Promise<any>;
-    updateArticleStatus(id: string, status: boolean, reason: string): Promise<any>;
+    getArticlesStatus(status: string): Promise<any>;
+    updateArticleStatus(id: string, status: string, reason: string): Promise<any>;
     addArticle(body: any): Promise<any>;
     submitEvidence(id: string, evidence: string): Promise<any>;
     rateArticle(id: string, rating: number): Promise<any>;

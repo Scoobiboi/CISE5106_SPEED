@@ -1,0 +1,19 @@
+.profile-container-outer {
+  display: flex;
+  justify-content: center;
+}
+.profile-container {
+  background-color: #262627;
+  border: 1px solid rgb(255 255 255 / 5%);
+  margin-top: 5px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+.item {
+  padding: 5px;
+}
