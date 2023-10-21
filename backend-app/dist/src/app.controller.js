@@ -47,6 +47,10 @@ let AppController = class AppController {
         const articles = await (0, db_1.getArticles)('Rating');
         return articles;
     }
+    async getArticlesStatus(status) {
+        const articles = await (0, db_1.getArticles)(status);
+        return articles;
+    }
     async updateArticleStatus(id, status, reason) {
         const result = await (0, db_1.updateArticleStatus)(id, status, reason);
         return result;
@@ -57,11 +61,11 @@ let AppController = class AppController {
             Authors: body.Authors,
             Journal_Name: body.Journal_Name,
             Publication_year: body.Publication_year,
-            Moderation_status: false,
+            Moderation_status: 'Awaiting',
             Rating: 0,
             no_Ratings: 0,
-            Evidence: "",
-            Moderation_reason: ""
+            Evidence: '',
+            Moderation_reason: '',
         };
         const result = await (0, db_1.addArticle)(article);
         return result;
@@ -71,6 +75,8 @@ let AppController = class AppController {
         return result;
     }
     async rateArticle(id, rating) {
+        console.log('id', id);
+        console.log('rating', rating);
         const result = await (0, db_1.rateArticle)(id, rating);
         return result;
     }
@@ -83,20 +89,21 @@ let AppController = class AppController {
             Name: body.Name,
             Password: body.Password,
             Email: body.Email,
-            Role: "user",
+            Role: 'user',
         };
         const result = await (0, db_1.addUser)(user);
         return result;
     }
     async loginUser(body) {
-        const { Email, Password } = body;
-        const user = await (0, db_1.findUser)(Email, Password);
+        const { email, password } = body;
+        console.log(email, password);
+        const user = await (0, db_1.findUser)(email, password);
         if (user) {
             return {
                 status: 'success',
                 message: 'Login successful',
                 userId: user._id,
-                userStatus: user.Role
+                userStatus: user.Role,
             };
         }
         else {
@@ -148,12 +155,19 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "getArticlesByRating", null);
 __decorate([
+    (0, common_1.Get)('/status/articles/:status'),
+    __param(0, (0, common_1.Param)('status')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getArticlesStatus", null);
+__decorate([
     (0, common_1.Put)('/articles/:id/status'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)('status')),
     __param(2, (0, common_1.Body)('reason')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Boolean, String]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "updateArticleStatus", null);
 __decorate([

@@ -53,15 +53,16 @@ export async function getArticlesStatus(status) {
   }
 }
 
-
-
 //Update status
 export async function updateArticleStatus(id, status, reason) {
   try {
     const result = await client
       .db('CISE_SPEED_DATABASE')
       .collection('Articles')
-      .updateOne({ _id: new ObjectId(id) }, { $set: { Moderation_status: status, Moderation_reason: reason } }); // Convert id to ObjectId
+      .updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { Moderation_status: status, Moderation_reason: reason } },
+      ); // Convert id to ObjectId
     return result;
   } catch (e) {
     console.error(e);
@@ -97,56 +98,59 @@ export async function searchArticlesByTitle(title) {
     return [];
   }
 }
-  
 
-  //New Rating
-  export async function rateArticle(id, newRating) {
-    try {
-      const article = await client
-        .db('CISE_SPEED_DATABASE')
-        .collection('Articles')
-        .findOne({ _id: new ObjectId(id) });
-      
-      const updatedRating = Math.round((article.Rating * article.no_Ratings + newRating) / (article.no_Ratings + 1));
-      const updatedNoRatings = article.no_Ratings + 1;
-  
-      const result = await client
-        .db('CISE_SPEED_DATABASE')
-        .collection('Articles')
-        .updateOne(
-          { _id: new ObjectId(id) },
-          { $set: { Rating: updatedRating, no_Ratings: updatedNoRatings } }
-        );
-      return result;
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
+//New Rating
+export async function rateArticle(id, newRating) {
+  try {
+    console.log(id, newRating);
+    const article = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .findOne({ _id: new ObjectId(id) });
+
+    const updatedRating = Math.round(
+      (article.Rating * article.no_Ratings + newRating) /
+        (article.no_Ratings + 1),
+    );
+    const updatedNoRatings = article.no_Ratings + 1;
+    console.log(updatedRating);
+    const result = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { Rating: updatedRating, no_Ratings: updatedNoRatings } },
+      );
+    return result;
+  } catch (e) {
+    console.error(e);
+    return null;
   }
+}
 
-  // Update Article Evidence
-  export async function updateArticleEvidence(id, newEvidence) {
-    try {
-      const article = await client
-        .db('CISE_SPEED_DATABASE')
-        .collection('Articles')
-        .findOne({ _id: new ObjectId(id) });
+// Update Article Evidence
+export async function updateArticleEvidence(id, newEvidence) {
+  try {
+    const article = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .findOne({ _id: new ObjectId(id) });
 
-      const updatedEvidence = article.Evidence + ' | ' + newEvidence;
+    const updatedEvidence = article.Evidence + ' | ' + newEvidence;
 
-      const result = await client
-        .db('CISE_SPEED_DATABASE')
-        .collection('Articles')
-        .updateOne(
-          { _id: new ObjectId(id) },
-          { $set: { Evidence: updatedEvidence } }
-        );
-      return result;
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
+    const result = await client
+      .db('CISE_SPEED_DATABASE')
+      .collection('Articles')
+      .updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { Evidence: updatedEvidence } },
+      );
+    return result;
+  } catch (e) {
+    console.error(e);
+    return null;
   }
+}
 
 // Insert New User
 export async function addUser(user) {
