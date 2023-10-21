@@ -1,18 +1,63 @@
+:root {
+  --primary-color: DarkGreen;
+}
+
 .login-container-outer {
   display: flex;
   justify-content: center;
 }
 .login-container {
   background-color: #262627;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
+  background-position: 50% 50%;
+  background-size: 1.1rem 1.1rem;
   border: 1px solid rgb(255 255 255 / 5%);
   margin-top: 5px;
   padding: 10px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   align-items: center;
-  justify-content: center;
   display: flex;
   flex-direction: column;
-  width: 20vw;
+  width: 300px;
+  border-radius: 10px;
+  position: absolute;
+  transition: background-position 0.7s ease;
 }
+.login-container:hover {
+  background-position: 40% 50%;
+  transition: background-position 0.7s ease;
+}
+
+.login-container:after {
+  content: "";
+  height: 60px;
+  width: 1px;
+  position: absolute;
+  left: -1px;
+  top: 65%;
+  transition: top, opacity;
+  transition-duration: 600ms;
+  transition-timing-function: ease;
+  background: linear-gradient(transparent, var(--primary-color), transparent);
+  opacity: 0;
+}
+.login-container:after {
+  top: 65%;
+  opacity: 0;
+}
+.login-container:hover:after {
+  top: 25%;
+  opacity: 1;
+}
+
 #status {
   color: red;
+}
+
+.button-container {
+  margin-top: 20px;
 }
