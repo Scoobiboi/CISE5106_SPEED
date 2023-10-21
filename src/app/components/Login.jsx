@@ -5,8 +5,8 @@ import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import CryptoJS from "crypto-js";
 
-// const url = "http://localhost:8080";
-const url = "https://cise-5106-speed-backend.vercel.app";
+const url = "http://localhost:8080";
+// const url = "https://cise-5106-speed-backend.vercel.app";
 
 const encryptionKey = "2147000000maxcash";
 const cookies = new Cookies();
@@ -71,6 +71,7 @@ function Login({ onLogin }) {
           required
           id="outlined-required"
           placeholder="Email"
+          color="success"
           sx={{ input: { color: "white" } }}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -79,11 +80,14 @@ function Login({ onLogin }) {
           id="outlined-required"
           placeholder="Password"
           type="password"
+          color="success"
           sx={{ input: { color: "white" } }}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleLoginClick}>Login</button>
-        <a id="status"></a>
+        <div className="button-container">
+          <button onClick={handleLoginClick}>Login</button>
+          <a id="status"></a>
+        </div>
       </div>
     </div>
   );
