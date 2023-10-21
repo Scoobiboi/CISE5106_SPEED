@@ -1,13 +1,29 @@
-import Link from "next/link";
 import "./home.css";
+import LoginContainer from "./components/LoginContainer";
 
 export default function Home() {
   return (
     <div className="home-container">
-      Home page to be completed.
-      <Link href="/articles">
-        <button>View all articles</button>
-      </Link>
+      <div className="books-container">
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+        <div className="books"></div>
+      </div>
+      <div className="title-container">
+        <div className="title-main">CISE SPEED Database</div>
+        <div className="title-secondary">
+          A website for querying academic articles
+        </div>
+      </div>
+      <LoginContainer />
     </div>
   );
 }
