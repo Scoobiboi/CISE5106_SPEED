@@ -4,9 +4,11 @@ import "./RetrieveArticles.css";
 import Rating from "@mui/material/Rating";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import HelpIcon from "@mui/icons-material/Help";
+import ErrorIcon from "@mui/icons-material/Error";
 
-// const url = "http://localhost:8080";
-const url = "https://cise-5106-speed-backend.vercel.app";
+const url = "http://localhost:8080";
+// const url = "https://cise-5106-speed-backend.vercel.app";
 
 function sortByDate(articles) {
   return articles.sort((a, b) => a.Publication_year - b.Publication_year);
@@ -52,15 +54,25 @@ export function ArticlesComponent() {
             <span
               className={
                 "space-between-text " +
-                (article.Moderation_status ? "approved" : "not-approved")
+                (article.Moderation_status === "Approved"
+                  ? "approved"
+                  : article.Moderation_status === "Awaiting"
+                  ? "awaiting"
+                  : article.Moderation_status === "Rejected"
+                  ? "rejected"
+                  : "unknown")
               }
             >
-              {article.Moderation_status ? "Approved" : "Not Approved"}
+              {article.Moderation_status}
             </span>
-            {article.Moderation_status ? (
+            {article.Moderation_status === "Approved" ? (
               <CheckCircleIcon color="success" />
-            ) : (
+            ) : article.Moderation_status === "Awaiting" ? (
+              <HelpIcon color="warning" />
+            ) : article.Moderation_status === "Rejected" ? (
               <RemoveCircleIcon color="error" />
+            ) : (
+              <ErrorIcon />
             )}
           </div>
           <div className="rating article-text">

@@ -34,8 +34,11 @@ h2 {
 .approved {
   color: green;
 }
-.not-approved {
+.rejected {
   color: red;
+}
+.awaiting {
+  color: orange;
 }
 
 .space-between-text {
