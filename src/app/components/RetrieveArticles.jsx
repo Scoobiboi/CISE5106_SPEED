@@ -13,7 +13,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 
 // const url = "http://localhost:8080";
-const url = "https://cise-5106-speed-backend.vercel.app";
+const url = "https://cise-5106-backend.vercel.app";
 
 const encryptionKey = "2147000000maxcash";
 const cookies = new Cookies();
