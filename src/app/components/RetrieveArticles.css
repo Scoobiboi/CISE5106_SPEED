@@ -48,3 +48,15 @@ h2 {
 .space-between-text {
   margin-left: 8px;
 }
+
+.articles-outer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sorting-container {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  display: flex;
+}
