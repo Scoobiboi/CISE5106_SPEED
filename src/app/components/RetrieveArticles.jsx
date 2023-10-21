@@ -5,6 +5,9 @@ import Rating from "@mui/material/Rating";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
+// const url = "http://localhost:8080";
+const url = "https://cise-5106-speed-backend.vercel.app";
+
 function sortByDate(articles) {
   return articles.sort((a, b) => a.Publication_year - b.Publication_year);
 }
@@ -67,6 +70,12 @@ export function ArticlesComponent() {
                 name="size-small"
                 defaultValue={article.Rating}
                 size="small"
+                onChange={(event, newValue) => {
+                  console.log(newValue);
+                  if (newValue != null) {
+                    updateArticleRating(article._id, Number(newValue));
+                  }
+                }}
               />
             </span>
           </div>
@@ -78,7 +87,27 @@ export function ArticlesComponent() {
 
 async function getArticles() {
   try {
-    const response = await fetch("https://cise-5106-speed-backend.vercel.app/articles");
+    const response = await fetch(url + "/api/articles");
+
+    if (response.status === 200) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+async function updateArticleRating(id, rating) {
+  try {
+    const response = await fetch(`${url}` + `/api/articles/${id}/rate`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ rating }),
+    });
 
     if (response.status === 200) {
       const data = await response.json();
