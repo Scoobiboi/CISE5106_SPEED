@@ -59,5 +59,9 @@
 }
 
 .info {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.textfield {
+  padding-top: 10px;
 }

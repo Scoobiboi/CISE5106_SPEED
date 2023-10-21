@@ -67,24 +67,30 @@ function Login({ onLogin }) {
   return (
     <div className="login-container-outer">
       <div className="login-container">
-        <div className="info">Sign in access our academic article database</div>
-        <TextField
-          required
-          id="outlined-required"
-          placeholder="Email"
-          color="success"
-          sx={{ input: { color: "white" } }}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          required
-          id="outlined-required"
-          placeholder="Password"
-          type="password"
-          color="success"
-          sx={{ input: { color: "white" } }}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="info">
+          Sign in to access our academic article database
+        </div>
+        <div className="textfield">
+          <TextField
+            required
+            id="outlined-required"
+            placeholder="Email"
+            color="success"
+            sx={{ input: { color: "white" } }}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="textfield">
+          <TextField
+            required
+            id="outlined-required"
+            placeholder="Password"
+            type="password"
+            color="success"
+            sx={{ input: { color: "white" } }}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <div className="button-container">
           <button onClick={handleLoginClick}>Login</button>
           <a id="status"></a>
