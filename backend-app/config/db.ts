@@ -178,6 +178,7 @@ export async function findUser(email, password) {
       .db('CISE_SPEED_DATABASE')
       .collection('Users')
       .findOne({ Email: email, Password: password });
+    console.log(user);
     return user;
   } catch (e) {
     console.error(e);
