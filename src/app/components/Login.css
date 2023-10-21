@@ -13,14 +13,15 @@
   border: 1px solid rgb(255 255 255 / 5%);
   margin-top: 5px;
   padding: 10px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   align-items: center;
   display: flex;
   flex-direction: column;
   width: 400px;
   position: absolute;
   transition: background-position 0.7s ease;
+  border-radius: 10px;
 }
 .login-container:hover {
   background-position: 40% 50%;
@@ -30,7 +31,7 @@
 .login-container:after {
   content: "";
   height: 60px;
-  width: 1px;
+  width: 2px;
   position: absolute;
   left: -1px;
   top: 65%;
@@ -55,4 +56,8 @@
 
 .button-container {
   margin-top: 20px;
+}
+
+.info {
+  padding-bottom: 20px;
 }

@@ -67,6 +67,7 @@ function Login({ onLogin }) {
   return (
     <div className="login-container-outer">
       <div className="login-container">
+        <div className="info">Sign in access our academic article database</div>
         <TextField
           required
           id="outlined-required"
