@@ -8,10 +8,6 @@
 }
 .profile-container {
   background-color: #262627;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.1) 1px,
-    transparent 1px
-  );
   background-position: 50% 50%;
   background-size: 1.1rem 1.1rem;
   border: 1px solid rgb(255 255 255 / 5%);
@@ -22,8 +18,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  border-radius: 10px;
+  width: 400px;
   position: absolute;
   transition: background-position 0.7s ease;
 }

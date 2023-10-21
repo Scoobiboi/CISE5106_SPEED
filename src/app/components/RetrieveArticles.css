@@ -1,25 +1,16 @@
 .articles-container {
   display: flex;
   flex-direction: column;
-  width: max-content;
-  overflow: scroll !important;
-  overflow-y: scroll !important;
-  overflow-x: scroll !important;
-  height: max-content;
+  width: fit-content;
+  height: fit-content;
 }
 .article {
-  width: 25vw;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  width: 100%;
   padding: 20px;
-  background-color: #262627;
-  border: 1px solid rgb(255 255 255 / 5%);
+
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.3s ease;
-}
-.article:hover {
-  box-shadow: 0 0 10px rgba(235, 235, 235, 0.7);
 }
 .article-text {
   margin-bottom: 4px;
@@ -59,4 +50,38 @@ h2 {
   padding-top: 10px;
   padding-bottom: 20px;
   display: flex;
+}
+
+.article-outer {
+  background-color: #262627;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
+  background-position: 50% 50%;
+  background-size: 1.1rem 1.1rem;
+  width: 100%;
+  min-height: 100px;
+  overflow: hidden;
+  transition: background-position 0.7s ease;
+  margin: 5px;
+  border: 2px solid rgb(255 255 255 / 5%);
+  border-radius: 5px;
+}
+.article-outer:hover {
+  background-position: 40% 40%;
+  transition: background-position 0.7s ease;
+  box-shadow: 0 0 10px rgba(235, 235, 235, 0.7);
+}
+
+.logout {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transform: scale(1.5);
+  transition: transform 0.3s ease;
+}
+.logout:hover {
+  cursor: pointer;
+  transform: scale(2);
 }
