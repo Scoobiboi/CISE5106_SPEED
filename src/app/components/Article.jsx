@@ -174,30 +174,29 @@ function Article({ article, user, updateArticleRating, updateFunction }) {
   );
 }
 
-const handleUpdatingEvidence = (evidence, id, handleEvidenceUpdated) => {
+const handleUpdatingEvidence = async (evidence, id, handleEvidenceUpdated) => {
   const resultDiv = document.getElementById("result");
-  fetch(`${url}` + `/api/articles/${id}/evidence`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json", // Set the appropriate content type
-    },
-    body: JSON.stringify({ evidence }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
+  const formData = new URLSearchParams();
+  formData.append("evidence", evidence);
+  try {
+    const response = await fetch(`${url}` + `/api/articles/${id}/evidence`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: formData.toString(),
+    });
+
+    if (response.status === 200 || response.status === 201) {
       handleEvidenceUpdated();
       console.log("evidence successfully updated");
       resultDiv.textContent = "Evidence successfully updated!";
-    })
-    .catch((error) => {
-      console.error("Fetch error:", error);
-      resultDiv.textContent = "Evidence not updated, please try again.";
-    });
+    } else {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default Article;
