@@ -15,10 +15,7 @@ async function bootstrap() {
 
   // Configure CORS to allow 'localhost:3000'
   app.enableCors({
-    origin: [
-      /^https:\/\/cise-5106-speed\.vercel\.app/,
-      'http://localhost:3000',
-    ],
+    origin: '*',
   });
 
   // add a process env port
