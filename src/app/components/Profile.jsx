@@ -19,9 +19,11 @@ function Profile({ userStatus }) {
         <Link className="item" href="/articles">
           <button>View all articles</button>
         </Link>
+
         <button onClick={logout}>Logout</button>
       </div>
     </div>
   );
 }
+
 export default Profile;
