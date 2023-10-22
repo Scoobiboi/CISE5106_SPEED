@@ -75,7 +75,7 @@ function Login({ onLogin }) {
             required
             id="outlined-required"
             placeholder="Email"
-            color="success"
+            // color="success"
             sx={{ input: { color: "white" } }}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -86,7 +86,7 @@ function Login({ onLogin }) {
             id="outlined-required"
             placeholder="Password"
             type="password"
-            color="success"
+            // color="success"
             sx={{ input: { color: "white" } }}
             onChange={(e) => setPassword(e.target.value)}
           />
