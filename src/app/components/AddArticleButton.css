@@ -1,0 +1,21 @@
+.button {
+  background-color: rgba(35, 72, 121, 0.3);
+  border: 1px solid #234869;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  height: 70px;
+}
+.button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.disable-selection {
+  user-select: none;
+}
