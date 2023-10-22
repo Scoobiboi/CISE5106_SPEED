@@ -129,7 +129,7 @@ async function updateArticleEvidence(id, newEvidence) {
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')
             .findOne({ _id: new mongodb_1.ObjectId(id) });
-        const updatedEvidence = article.Evidence + ' | ' + newEvidence;
+        const updatedEvidence = newEvidence;
         const result = await client
             .db('CISE_SPEED_DATABASE')
             .collection('Articles')
@@ -165,6 +165,7 @@ async function findUser(email, password) {
             .db('CISE_SPEED_DATABASE')
             .collection('Users')
             .findOne({ Email: email, Password: password });
+        console.log(user);
         return user;
     }
     catch (e) {

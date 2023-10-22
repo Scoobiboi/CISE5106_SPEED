@@ -1,16 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import "./RetrieveArticles.css";
-import Rating from "@mui/material/Rating";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import HelpIcon from "@mui/icons-material/Help";
-import ErrorIcon from "@mui/icons-material/Error";
 import Cookies from "universal-cookie";
 import CryptoJS from "crypto-js";
 import SortButton from "./SortButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
+import Article from "./Article";
 
 // const url = "http://localhost:8080";
 const url = "https://cise-5106-backend.vercel.app";
@@ -151,11 +147,25 @@ export function ArticlesComponent() {
     return false;
   });
 
+  const handleUpdateArticles = async () => {
+    async function fetchArticles() {
+      try {
+        const data = await getArticles();
+        setArticles(sortByStatus(data));
+        setUserStatus(retrieveUserStatus());
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchArticles();
+  };
+
   return (
     <div className="articles-outer-container">
       <div onClick={logout} className="logout">
         <Link href="/">
-          <LogoutIcon />
+          <LogoutIcon color="primary" />
         </Link>
       </div>
       <div className="sorting-container">
@@ -180,70 +190,13 @@ export function ArticlesComponent() {
       </div>
       <div className="articles-container">
         {filteredArticles.map((article) => (
-          <div key={article._id} className="article-outer">
-            <div className="article">
-              <h2 className="title article-text">{article.title}</h2>
-              <div className="authors article-text">
-                <b>Authors:</b>
-                <span className="space-between-text"> {article.Authors}</span>
-              </div>
-              <div className="publication-year article-text">
-                <b>Publication Year: </b>
-                <span className="space-between-text">
-                  {article.Publication_year}
-                </span>
-              </div>
-              <div className="journal-name article-text">
-                <b>Journal Name: </b>
-                <span className="space-between-text">
-                  {" "}
-                  {article.Journal_Name}
-                </span>
-              </div>
-              <div className="moderation-status article-text">
-                <b>Moderation Status: </b>{" "}
-                <span
-                  className={
-                    "space-between-text " +
-                    (article.Moderation_status === "Approved"
-                      ? "approved"
-                      : article.Moderation_status === "Awaiting Approval"
-                      ? "awaiting"
-                      : article.Moderation_status === "Rejected"
-                      ? "rejected"
-                      : "unknown")
-                  }
-                >
-                  {article.Moderation_status}
-                </span>
-                {article.Moderation_status === "Approved" ? (
-                  <CheckCircleIcon color="success" />
-                ) : article.Moderation_status === "Awaiting Approval" ? (
-                  <HelpIcon color="warning" />
-                ) : article.Moderation_status === "Rejected" ? (
-                  <RemoveCircleIcon color="error" />
-                ) : (
-                  <ErrorIcon />
-                )}
-              </div>
-              <div className="rating article-text">
-                <b>Rating:</b>{" "}
-                <span className="space-between-text">
-                  <Rating
-                    name="size-small"
-                    defaultValue={article.Rating}
-                    size="small"
-                    onChange={(event, newValue) => {
-                      console.log(newValue);
-                      if (newValue != null) {
-                        updateArticleRating(article._id, Number(newValue));
-                      }
-                    }}
-                  />
-                </span>
-              </div>
-            </div>
-          </div>
+          <Article
+            key={article._id}
+            article={article}
+            updateArticleRating={updateArticleRating}
+            user={userStatus}
+            updateFunction={handleUpdateArticles}
+          />
         ))}
       </div>
     </div>

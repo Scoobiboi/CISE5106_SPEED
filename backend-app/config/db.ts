@@ -136,7 +136,7 @@ export async function updateArticleEvidence(id, newEvidence) {
       .collection('Articles')
       .findOne({ _id: new ObjectId(id) });
 
-    const updatedEvidence = article.Evidence + ' | ' + newEvidence;
+    const updatedEvidence = newEvidence;
 
     const result = await client
       .db('CISE_SPEED_DATABASE')
