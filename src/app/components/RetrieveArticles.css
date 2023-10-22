@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   overflow-y: scroll !important;
+  max-width: 600px;
 }
 
 .articles-outer-container {
