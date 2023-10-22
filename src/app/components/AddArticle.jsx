@@ -65,6 +65,7 @@ function AddArticle({ callback }) {
       </div>
       <div className="article-outer">
         <div className="article new-article">
+          <div className="add-title">Title: </div>
           <div className="title article-text">
             <TextField
               required
@@ -79,6 +80,7 @@ function AddArticle({ callback }) {
               }}
             />
           </div>
+          <div className="add-title">Authors: </div>
           <div className="authors article-text">
             <TextField
               required
@@ -92,6 +94,7 @@ function AddArticle({ callback }) {
               }}
             />
           </div>
+          <div className="add-title">Publication Year:: </div>
           <div className="publication-year article-text">
             <TextField
               required
@@ -105,6 +108,7 @@ function AddArticle({ callback }) {
               }}
             />
           </div>
+          <div className="add-title">Journal Name: </div>
           <div className="journal-name article-text">
             <TextField
               required

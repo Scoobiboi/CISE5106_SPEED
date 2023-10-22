@@ -9,6 +9,10 @@
 .title {
   padding-bottom: 0;
 }
+.add-title {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
 
 .slide-in-top {
   -webkit-animation: slide-in-top 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
