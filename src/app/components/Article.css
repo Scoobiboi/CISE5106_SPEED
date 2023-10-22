@@ -6,6 +6,7 @@
 
 .article {
   width: 90%;
+
   padding: 20px;
 
   display: flex;
@@ -95,54 +96,48 @@ h2 {
 }
 .edit {
   color: grey;
+  display: flex;
 }
 .edit:hover {
   color: #275b88;
   cursor: pointer;
 }
-
-.edit:hover::after {
-  content: attr(alt); /* Display the alt text on hover */
-  position: fixed;
-  /* background-color: rgba(0, 0, 0, 0.7); */
-  color: #fff;
-  padding: 5px;
-  font-size: 14px;
+.result-container {
+  margin-top: 30px;
+  margin-bottom: -10px;
 }
 
 .evidence-text {
-  text-wrap: wrap;
+  text-wrap: pretty;
   margin-left: 0 !important;
   margin-top: 10px;
 }
 .evidence {
-  max-width: 600px;
-  min-width: 600px;
+  max-width: 400px;
+  min-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .text-field-container {
   width: 93%;
+  /* border: 1px solid #234869; */
+  margin-top: 20px;
+  padding: 5px;
+  border-radius: 5px;
 }
 .edit-buttons {
   display: flex;
   justify-content: end;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .cancel-button {
-  width: fit-content;
-  height: fit-content;
-  padding: 10px;
-  background-color: #262627;
-  border: 1px solid rgb(255 255 255 / 10%);
-  border-radius: 10px;
   color: red;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5px;
 }
 .update-evidence-button {
   width: fit-content;
@@ -160,9 +155,78 @@ h2 {
 .update-evidence-button:hover {
   cursor: pointer;
 }
+.evidence-main-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
 
 #result {
   color: white;
   padding-top: 10px;
   margin-left: -8px !important;
+  font-style: oblique;
+}
+
+.approve-button,
+.analysis-button,
+.reject-button {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  color: black;
+  display: flex;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.approve-button {
+  background-color: lightgreen;
+}
+.analysis-button {
+  background-color: lightblue;
+}
+.reject-button {
+  background-color: lightcoral;
+}
+
+.approve-button:hover {
+  color: green;
+  cursor: pointer;
+}
+.analysis-button:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.reject-button:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.options-container {
+  display: flex;
+  width: 150px;
+  justify-content: space-evenly;
+}
+.MuiRating-iconEmpty {
+  color: gold;
+}
+
+.disable-selection {
+  user-select: none;
+}
+.approval-button-container {
+  display: flex;
+  justify-content: end;
+  margin-top: 5px;
+}
+.approval-header,
+.evidence-header {
+  font-size: larger;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

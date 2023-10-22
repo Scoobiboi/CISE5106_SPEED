@@ -7,6 +7,8 @@ import SortButton from "./SortButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 import Article from "./Article";
+import AddArticleButton from "./AddArticleButton";
+import AddArticle from "./AddArticle";
 
 // const url = "http://localhost:8080";
 const url = "https://cise-5106-backend.vercel.app";
@@ -74,6 +76,7 @@ export function ArticlesComponent() {
   const [articles, setArticles] = useState([]);
   const [userStatus, setUserStatus] = useState("");
   const [sortStatus, setSortStatus] = useState("");
+  const [addingArticle, setAddingArticle] = useState("");
 
   useEffect(() => {
     async function fetchArticles() {
@@ -88,6 +91,13 @@ export function ArticlesComponent() {
 
     fetchArticles();
   }, []);
+
+  function submitArticle() {
+    setAddingArticle(!addingArticle);
+  }
+  function submitArticleCallback() {
+    setAddingArticle(false);
+  }
 
   const sortArticlesByDate = () => {
     if (sortStatus == "button-year-asc") {
@@ -187,8 +197,10 @@ export function ArticlesComponent() {
           className="button-rating"
           text="Sort by Rating"
         />
+        <AddArticleButton submitArticle={submitArticle} />
       </div>
       <div className="articles-container">
+        {addingArticle && <AddArticle callback={submitArticleCallback} />}
         {filteredArticles.map((article) => (
           <Article
             key={article._id}

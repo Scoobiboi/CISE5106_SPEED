@@ -4,6 +4,7 @@ import "./Login.css";
 import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import CryptoJS from "crypto-js";
+import UserInfo from "./UserInfo";
 
 // const url = "http://localhost:8080";
 const url = "https://cise-5106-backend.vercel.app";
@@ -66,6 +67,7 @@ function Login({ onLogin }) {
 
   return (
     <div className="login-container-outer">
+      <UserInfo />
       <div className="login-container">
         <div className="info">
           Sign in to access our academic article database

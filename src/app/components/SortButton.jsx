@@ -10,17 +10,20 @@ function SortButton({ sortFunction, sortStatus, className, text }) {
     .replace("button-rating-", "");
 
   return (
-    <div onClick={sortFunction} className={className + " button"}>
+    <div
+      onClick={sortFunction}
+      className={className + " button disable-selection"}
+    >
       <div>{text}</div>
       <div className="arrows">
         <KeyboardArrowUpIcon
           color={
-            statusNoType == className && type == "asc" ? "success" : "disabled"
+            statusNoType == className && type == "asc" ? "primary" : "disabled"
           }
         />
         <KeyboardArrowDownIcon
           color={
-            statusNoType == className && type == "desc" ? "success" : "disabled"
+            statusNoType == className && type == "desc" ? "primary" : "disabled"
           }
         />
       </div>

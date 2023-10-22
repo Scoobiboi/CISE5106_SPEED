@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
+  height: 70px;
 }
 .button:hover {
   transform: scale(1.1);
@@ -17,9 +18,4 @@
 
 .disable-selection {
   user-select: none;
-}
-
-.arrows {
-  display: flex;
-  flex-direction: column;
 }

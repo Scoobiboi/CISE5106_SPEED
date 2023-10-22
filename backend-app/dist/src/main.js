@@ -12,6 +12,8 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
         origin: ['https://cise-5106-speed.vercel.app', 'http://localhost:3000'],
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        credentials: true,
     });
     await app.listen(process.env.PORT || 8080);
 }

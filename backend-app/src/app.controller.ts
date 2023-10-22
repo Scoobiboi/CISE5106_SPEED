@@ -86,7 +86,7 @@ export class AppController {
       Authors: body.Authors,
       Journal_Name: body.Journal_Name,
       Publication_year: body.Publication_year,
-      Moderation_status: 'Awaiting',
+      Moderation_status: 'Awaiting Approval',
       Rating: 0,
       no_Ratings: 0,
       Evidence: '',
